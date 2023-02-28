@@ -1,0 +1,523 @@
+{
+  "users": [
+    {
+        "id": 0,
+        "name": "admin",
+        "surname": "admin",
+        "address": "admin",
+        "email": "admin@email.com",
+        "password": "adminroot"
+    },
+    {
+      "id": 1,
+      "name": "Fulano",
+      "surname": "Silva",
+      "address": "Rua das Conchas, 126",
+      "email": "fulanosilva@email.com",
+      "password": "123456"
+    }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "name": "Apple iBook",
+      "additionalFeatures": "Front Facing 1.3MP Camera",
+      "os": "Macintosh OS X 10.7",
+      "price": "200.67",
+      "battery": {
+          "type": "Lithium Ion (Li-Ion) (7000 mAH)",
+  	      "standbytime" : "24 hours"
+      },
+      "camera": {
+          "features": [
+              "Flash",
+              "Video"
+          ],
+          "primary": "5.0 megapixels"
+      },
+      "connectivity": {
+          "bluetooth": "Bluetooth 2.1",
+          "cell": "T-mobile HSPA+ @ 2100/1900/AWS/850 MHz",
+          "gps": true,
+          "infrared": false,
+          "wifi": "802.11 b/g"
+      },
+      "description": "Apple iBook is the best in class computer for your professional and personal work.",
+      "display": {
+          "screenResolution": "WVGA (1280 x 968)",
+          "screenSize": "13.0 inches"
+      },
+      "hardware": {
+          "accelerometer": true,
+          "audioJack": "3.5mm",
+          "cpu": "Intel i7 2.5 GHz",
+          "fmRadio": false,
+          "physicalKeyboard": false,
+          "usb": "USB 3.0"
+      },
+      "images": "https://upload.wikimedia.org/wikipedia/commons/9/9a/MacBook_Pro.jpg",
+      "sizeAndWeight": {
+          "dimensions": [
+              "300 mm (w)",
+              "300 mm (h)",
+              "12.4 mm (d)"
+          ],
+          "weight": "1250.0 grams"
+      },
+      "storage": {
+          "hdd": "750GB",
+          "ram": "8GB"
+      }
+    },
+    {
+      "id": 2,
+      "name": "Samsung Phone",
+      "additionalFeatures": "Front Facing 7.0MP Camera",
+      "os": "Samsung UI 12",
+      "battery": {
+          "type": "Lithium Ion (Li-Ion) (4000 mAH)",
+  	      "standbytime" : "12 hours"
+      },
+      "camera": {
+          "features": [
+              "Flash",
+              "Video"
+          ],
+          "primary": "7.0 megapixels"
+      },
+      "connectivity": {
+          "bluetooth": "Bluetooth 3.1",
+          "cell": "T-mobile HSPA+ @ 2100/1900/AWS/850 MHz",
+          "gps": true,
+          "infrared": false,
+          "wifi": "802.11 b/g"
+      },
+      "description": "Samsung Phone will help you in your most important calls.",
+      "display": {
+          "screenResolution": "WVGA (980 x 1968)",
+          "screenSize": "7.0 inches"
+      },
+      "hardware": {
+          "accelerometer": true,
+          "audioJack": "3.5mm",
+          "cpu": "Snapdragon 777",
+          "fmRadio": false,
+          "physicalKeyboard": false,
+          "usb": "USB-C"
+      },
+      "images": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWcgtx1e8qnC6u3tFopg3hCb1L81Tdr1l4tw&usqp=CAU",
+      "sizeAndWeight": {
+          "dimensions": [
+              "300 mm (w)",
+              "300 mm (h)",
+              "12.4 mm (d)"
+          ],
+          "weight": "250.0 grams"
+      },
+      "storage": {
+          "hdd": "64GB",
+          "ram": "4GB"
+      }
+    },
+    {
+      "id": 3,
+      "name": "Xiaomi Phone",
+      "additionalFeatures": "Front Facing 9.9MP Camera",
+      "os": "Xiaomi OS",
+      "battery": {
+          "type": "Lithium Ion (Li-Ion) (2000 mAH)",
+  	      "standbytime" : "2 hours"
+      },
+      "camera": {
+          "features": [
+              "Flash",
+              "Video"
+          ],
+          "primary": "5.0 megapixels"
+      },
+      "connectivity": {
+          "bluetooth": "Bluetooth 2.1",
+          "cell": "T-mobile HSPA+ @ 2100/1900/AWS/850 MHz",
+          "gps": true,
+          "infrared": false,
+          "wifi": "802.11 b/g"
+      },
+      "description": "Xiaomi Phone is the most affordable phone in the world.",
+      "display": {
+          "screenResolution": "WVGA (780 x 968)",
+          "screenSize": "3.0 inches"
+      },
+      "hardware": {
+          "accelerometer": true,
+          "audioJack": "3.5mm",
+          "cpu": "Snapdragon 678",
+          "fmRadio": true,
+          "physicalKeyboard": false,
+          "usb": "USB-C"
+      },
+      "images": "https://www.trustedreviews.com/wp-content/uploads/sites/54/2021/12/Xiaomi-12-leaks.jpg",
+      "sizeAndWeight": {
+          "dimensions": [
+              "300 mm (w)",
+              "300 mm (h)",
+              "12.4 mm (d)"
+          ],
+          "weight": "250.0 grams"
+      },
+      "storage": {
+          "hdd": "128GB",
+          "ram": "2GB"
+      }
+    },
+    {
+      "id": 4,
+      "name": "Dell XPS 12",
+      "additionalFeatures": "Front Facing 1.3MP Camera",
+      "os": "Windows 11",
+      "battery": {
+          "type": "Lithium Ion (Li-Ion) (7000 mAH)",
+  	      "standbytime" : "24 hours"
+      },
+      "camera": {
+          "features": [
+              "Flash",
+              "Video"
+          ],
+          "primary": "5.0 megapixels"
+      },
+      "connectivity": {
+          "bluetooth": "Bluetooth 2.1",
+          "cell": "T-mobile HSPA+ @ 2100/1900/AWS/850 MHz",
+          "gps": true,
+          "infrared": false,
+          "wifi": "802.11 b/g"
+      },
+      "description": "Dell is the most advanced notebook.",
+      "display": {
+          "screenResolution": "WVGA (1280 x 968)",
+          "screenSize": "13.0 inches"
+      },
+      "hardware": {
+          "accelerometer": true,
+          "audioJack": "3.5mm",
+          "cpu": "Intel i3 1.5 GHz",
+          "fmRadio": false,
+          "physicalKeyboard": false,
+          "usb": "USB 3.0"
+      },
+      "images": "https://upload.wikimedia.org/wikipedia/commons/4/4a/Dell_XPS_12_%282012%29.png",
+      "sizeAndWeight": {
+          "dimensions": [
+              "300 mm (w)",
+              "300 mm (h)",
+              "12.4 mm (d)"
+          ],
+          "weight": "1250.0 grams"
+      },
+      "storage": {
+          "hdd": "500GB",
+          "ram": "4GB"
+      }
+    },
+    {
+      "id": 5,
+      "name": "Asus Zenbook",
+      "additionalFeatures": "Front Facing 1.3MP Camera",
+      "os": "Ubuntu Linux",
+      "battery": {
+          "type": "Lithium Ion (Li-Ion) (7000 mAH)",
+  	      "standbytime" : "24 hours"
+      },
+      "camera": {
+          "features": [
+              "Flash",
+              "Video"
+          ],
+          "primary": "5.0 megapixels"
+      },
+      "connectivity": {
+          "bluetooth": "Bluetooth 2.1",
+          "cell": "T-mobile HSPA+ @ 2100/1900/AWS/850 MHz",
+          "gps": true,
+          "infrared": false,
+          "wifi": "802.11 b/g"
+      },
+      "description": "Asus Zenbook is the most zen notebook in the world.",
+      "display": {
+          "screenResolution": "HDMI (1280 x 968)",
+          "screenSize": "13.0 inches"
+      },
+      "hardware": {
+          "accelerometer": true,
+          "audioJack": "3.5mm",
+          "cpu": "Intel i5 1.7 GHz",
+          "fmRadio": false,
+          "physicalKeyboard": false,
+          "usb": "USB 3.0"
+      },
+      "images": "https://live.staticflickr.com/6152/6254343204_2496efec64_b.jpg",
+      "sizeAndWeight": {
+          "dimensions": [
+              "300 mm (w)",
+              "300 mm (h)",
+              "12.4 mm (d)"
+          ],
+          "weight": "250.0 grams"
+      },
+      "storage": {
+          "hdd": "150GB",
+          "ram": "8GB"
+      }
+    },
+    {
+      "id": 6,
+      "name": "Lenovo Book",
+      "additionalFeatures": "Front Facing 1.3MP Camera",
+      "os": "Macintosh OS X 10.7",
+      "battery": {
+          "type": "Lithium Ion (Li-Ion) (7000 mAH)",
+  	      "standbytime" : "24 hours"
+      },
+      "camera": {
+          "features": [
+              "Flash",
+              "Video"
+          ],
+          "primary": "5.0 megapixels"
+      },
+      "connectivity": {
+          "bluetooth": "Bluetooth 2.1",
+          "cell": "T-mobile HSPA+ @ 2100/1900/AWS/850 MHz",
+          "gps": true,
+          "infrared": false,
+          "wifi": "802.11 b/g"
+      },
+      "description": "Lenovo Book is a good notebook.",
+      "display": {
+          "screenResolution": "HDMI (1440 x 720)",
+          "screenSize": "13.0 inches"
+      },
+      "hardware": {
+          "accelerometer": true,
+          "audioJack": "3.5mm",
+          "cpu": "Intel i3 1.5 GHz",
+          "fmRadio": false,
+          "physicalKeyboard": false,
+          "usb": "USB 3.0"
+      },
+      "images": "https://www.trustedreviews.com/wp-content/uploads/sites/54/2022/01/Lenovo-Yoga-9i_Gen_7_Front_Facing_Oatmeal.png",
+      "sizeAndWeight": {
+          "dimensions": [
+              "300 mm (w)",
+              "300 mm (h)",
+              "12.4 mm (d)"
+          ],
+          "weight": "500.0 grams"
+      },
+      "storage": {
+          "hdd": "250GB",
+          "ram": "4GB"
+      }
+    },
+    {
+      "id": 7,
+      "name": "Notebook Acer",
+      "additionalFeatures": "Front Facing 1.3MP Camera",
+      "os": "Macintosh OS X 10.7",
+      "battery": {
+          "type": "Lithium Ion (Li-Ion) (7000 mAH)",
+  	      "standbytime" : "24 hours"
+      },
+      "camera": {
+          "features": [
+              "Flash",
+              "Video"
+          ],
+          "primary": "5.0 megapixels"
+      },
+      "connectivity": {
+          "bluetooth": "Bluetooth 2.1",
+          "cell": "T-mobile HSPA+ @ 2100/1900/AWS/850 MHz",
+          "gps": true,
+          "infrared": false,
+          "wifi": "802.11 b/g"
+      },
+      "description": "Acer. The notebook of the future!",
+      "display": {
+          "screenResolution": "HDMI (1980 x 1080)",
+          "screenSize": "13.0 inches"
+      },
+      "hardware": {
+          "accelerometer": true,
+          "audioJack": "3.5mm",
+          "cpu": "Intel i5 1.9 GHz",
+          "fmRadio": false,
+          "physicalKeyboard": false,
+          "usb": "USB 3.0"
+      },
+      "images": "https://www.trustedreviews.com/wp-content/uploads/sites/54/2022/01/Nitro-5-AN517-05-scaled.jpg",
+      "sizeAndWeight": {
+          "dimensions": [
+              "300 mm (w)",
+              "300 mm (h)",
+              "12.4 mm (d)"
+          ],
+          "weight": "1250.0 grams"
+      },
+      "storage": {
+          "hdd": "750GB",
+          "ram": "8GB"
+      }
+    },
+    {
+      "id": 8,
+      "name": "Chromebook Acer",
+      "additionalFeatures": "Front Facing 1.3MP Camera",
+      "os": "Macintosh OS X 10.7",
+      "battery": {
+          "type": "Lithium Ion (Li-Ion) (7000 mAH)",
+  	      "standbytime" : "24 hours"
+      },
+      "camera": {
+          "features": [
+              "Flash",
+              "Video"
+          ],
+          "primary": "5.0 megapixels"
+      },
+      "connectivity": {
+          "bluetooth": "Bluetooth 2.1",
+          "cell": "T-mobile HSPA+ @ 2100/1900/AWS/850 MHz",
+          "gps": true,
+          "infrared": false,
+          "wifi": "802.11 b/g"
+      },
+      "description": "Chromebook. Simple, but fast.",
+      "display": {
+          "screenResolution": "WVGA (1280 x 968)",
+          "screenSize": "13.0 inches"
+      },
+      "hardware": {
+          "accelerometer": true,
+          "audioJack": "3.5mm",
+          "cpu": "Intel i7 2.5 GHz",
+          "fmRadio": false,
+          "physicalKeyboard": false,
+          "usb": "USB 3.0"
+      },
+      "images": "https://live.staticflickr.com/8251/8553344925_744ddcd41c_b.jpg",
+      "sizeAndWeight": {
+          "dimensions": [
+              "300 mm (w)",
+              "300 mm (h)",
+              "12.4 mm (d)"
+          ],
+          "weight": "1250.0 grams"
+      },
+      "storage": {
+          "hdd": "750GB",
+          "ram": "8GB"
+      }
+    },
+    {
+      "id": 9,
+      "name": "Tablet S6 Lite",
+      "additionalFeatures": "Front Facing 1.3MP Camera",
+      "os": "Macintosh OS X 10.7",
+      "battery": {
+          "type": "Lithium Ion (Li-Ion) (7000 mAH)",
+  	      "standbytime" : "24 hours"
+      },
+      "camera": {
+          "features": [
+              "Flash",
+              "Video"
+          ],
+          "primary": "5.0 megapixels"
+      },
+      "connectivity": {
+          "bluetooth": "Bluetooth 2.1",
+          "cell": "T-mobile HSPA+ @ 2100/1900/AWS/850 MHz",
+          "gps": true,
+          "infrared": false,
+          "wifi": "802.11 b/g"
+      },
+      "description": "S6 Lite.",
+      "display": {
+          "screenResolution": "WVGA (1280 x 2000)",
+          "screenSize": "13.0 inches"
+      },
+      "hardware": {
+          "accelerometer": true,
+          "audioJack": "3.5mm",
+          "cpu": "Eyxnos 78",
+          "fmRadio": false,
+          "physicalKeyboard": false,
+          "usb": "USB 3.0"
+      },
+      "images": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR12SYcOFuEpZSitroA6I8EEE-EzC5iaxwkRg&usqp=CAU",
+      "sizeAndWeight": {
+          "dimensions": [
+              "300 mm (w)",
+              "300 mm (h)",
+              "12.4 mm (d)"
+          ],
+          "weight": "1250.0 grams"
+      },
+      "storage": {
+          "hdd": "64GB",
+          "ram": "4GB"
+      }
+    },
+    {
+      "id": 10,
+      "name": "Ipad Apple",
+      "additionalFeatures": "Front Facing 1.3MP Camera",
+      "os": "Macintosh OS X 10.7",
+      "battery": {
+          "type": "Lithium Ion (Li-Ion) (7000 mAH)",
+  	      "standbytime" : "24 hours"
+      },
+      "camera": {
+          "features": [
+              "Flash",
+              "Video"
+          ],
+          "primary": "5.0 megapixels"
+      },
+      "connectivity": {
+          "bluetooth": "Bluetooth 2.1",
+          "cell": "T-mobile HSPA+ @ 2100/1900/AWS/850 MHz",
+          "gps": true,
+          "infrared": false,
+          "wifi": "802.11 b/g"
+      },
+      "description": "Ipad Apple. Expensive, but flexible.",
+      "display": {
+          "screenResolution": "WVGA (1280 x 968)",
+          "screenSize": "13.0 inches"
+      },
+      "hardware": {
+          "accelerometer": true,
+          "audioJack": "3.5mm",
+          "cpu": "Intel i7 2.5 GHz",
+          "fmRadio": false,
+          "physicalKeyboard": false,
+          "usb": "USB 3.0"
+      },
+      "images": "https://www.trustedreviews.com/wp-content/uploads/sites/54/2021/09/New-ipad-9.png",
+      "sizeAndWeight": {
+          "dimensions": [
+              "300 mm (w)",
+              "300 mm (h)",
+              "12.4 mm (d)"
+          ],
+          "weight": "1250.0 grams"
+      },
+      "storage": {
+          "hdd": "250GB",
+          "ram": "16GB"
+      }
+    }
+  ]
+}
