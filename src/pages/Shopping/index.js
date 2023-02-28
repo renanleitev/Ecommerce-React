@@ -14,23 +14,22 @@ export default function Shopping(){
     const cart = useSelector(state => state.products.cart);
     const isLoggedIn = useSelector(state => state.login.isLoggedIn);
     const [quantity, setQuantity] = useState(0);
-    let total = 0;
     const dispatch = useDispatch();
     const handleCheckout = useCallback(() => {
+        let total = 0;
         cart.forEach(element => {
             total += element.totalPrice;
         });
         toast.success(`Thank you! Your total is $${total}`);
-        total = 0;
-    }, [cart, total]);
-    const handleIncrement = useCallback((id, quant) => {
+    }, [cart]);
+    const handleIncrement = useCallback((id) => {
         dispatch(actions.incrementQuantity(id));
-        setQuantity(quant+1);
-    }, [dispatch]);
-    const handleDecrement = useCallback((id, quant) => {
+        setQuantity(quantity+1);
+    }, [dispatch, quantity]);
+    const handleDecrement = useCallback((id) => {
         dispatch(actions.decrementQuantity(id));
-        setQuantity(quant-1);
-    }, [dispatch]);
+        setQuantity(quantity-1);
+    }, [dispatch, quantity]);
     const handleRemove = useCallback((id) => {
         dispatch(actions.removeProduct(id));
     }, [dispatch]);
@@ -39,23 +38,17 @@ export default function Shopping(){
             <CheckoutContainer onClick={handleCheckout}>Checkout</CheckoutContainer>
             {isLoggedIn ? (
                 cart.map(item => (
-                    <ItemContainer key={Math.random()}>
-                        <ShoppingContainer key={Math.random()}>
-                            <Link to={`product/${item.id}`} key={Math.random()}>{item.name}</Link>
-                            <img key={Math.random()} src={item.images} alt=''/>
-                            <p key={Math.random()}>Price: ${item.price}</p>
-                            <p key={Math.random()}>Quantity: {item.quantity}</p>
-                            <p key={Math.random()}>Total: ${item.totalPrice}</p>
+                    <ItemContainer key={item.id}>
+                        <ShoppingContainer key={item.id+1}>
+                            <Link to={`product/${item.id}`} key={item.id+2}>{item.name}</Link>
+                            <img key={item.id+3} src={item.images} alt=''/>
+                            <p key={item.id+4}>Price: ${item.price}</p>
+                            <p key={item.id+5}>Quantity: {item.quantity}</p>
+                            <p key={item.id+6}>Total: ${item.totalPrice}</p>
                         </ShoppingContainer>
-                        <ButtonContainer key={Math.random()}>
-                                <button onClick={() => handleIncrement(
-                                    item.id,
-                                    item.quantity
-                                    )}>+</button>
-                                <button onClick={() => handleDecrement(
-                                    item.id,
-                                    item.quantity
-                                    )}>-</button>
+                        <ButtonContainer key={item.id+7}>
+                                <button onClick={() => handleIncrement(item.id)}>+</button>
+                                <button onClick={() => handleDecrement(item.id)}>-</button>
                                 <button onClick={() => handleRemove(item.id)}>Remove item</button>
                         </ButtonContainer>
                     </ItemContainer>

@@ -3,7 +3,7 @@ import * as colors from '../../config/colors';
 
 export const ItemContainer = styled.div`
     max-width: 760px;
-    max-height: 400px;
+    max-height: 500px;
     background: white;
     margin: 30px auto;
     padding: 30px;
