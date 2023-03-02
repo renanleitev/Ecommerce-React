@@ -57,6 +57,13 @@ export const ShoppingContainer = styled.div`
 export const CheckoutContainer = styled.button`
     background-color: ${colors.infoColor};
     border-radius: 0;
+    border-radius: 50%;
+    width: 60px;
+    position: fixed;
+    align-self: center;
+    margin-left: 500px;
+    margin-top: 250px;
+    z-index: 2;
     :hover{
         background-color: ${colors.sucessColor};
     }

@@ -1,4 +1,5 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
+import {FaShoppingCart} from 'react-icons/fa';
 import { useSelector, useDispatch } from 'react-redux';
 import * as actions from '../../store/modules/products/actions';
 import { 
@@ -15,6 +16,13 @@ export default function Shopping(){
     const isLoggedIn = useSelector(state => state.login.isLoggedIn);
     const [quantity, setQuantity] = useState(0);
     const dispatch = useDispatch();
+    useMemo(() => {
+        let quantity = 0;
+        cart.forEach(element => {
+            quantity += element.quantity;
+        });
+        setQuantity(quantity);
+    }, [cart]);
     const handleCheckout = useCallback(() => {
         let total = 0;
         cart.forEach(element => {
@@ -35,7 +43,7 @@ export default function Shopping(){
     }, [dispatch]);
     return (
         <CartContainer>
-            <CheckoutContainer onClick={handleCheckout}>Checkout</CheckoutContainer>
+            <CheckoutContainer onClick={handleCheckout}><FaShoppingCart size={20}/> {quantity}</CheckoutContainer>
             {isLoggedIn ? (
                 cart.map(item => (
                     <ItemContainer key={item.id}>

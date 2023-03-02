@@ -49,11 +49,7 @@ export default function productsReducer (state = initialState, action) {
         case types.DECREMENT_QUANTITY: {
             const newState = { ...state };
             const item = newState.cart.find((item) => item.id === action.payload);
-            if (item.quantity === 1) {
-              item.quantity = 1;
-            } else {
-              item.quantity--;
-            }
+            if (item.quantity > 1) item.quantity--;
             item.totalPrice = Number.parseFloat(Number.parseFloat(item.price * item.quantity).toFixed(2));
             return newState;
         }
