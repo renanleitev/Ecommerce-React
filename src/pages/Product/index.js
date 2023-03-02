@@ -15,6 +15,7 @@ export default function Product(){
     const [quantity, setQuantity] = useState(0);
     const [totalPrice, setTotalPrice] = useState(0);
     const [firstLoad, setFirstLoad] = useState(true);
+    const product = useSelector(state => state.products.product);
     const [item, setItem] = useState({});
     useMemo(() => {
         if (cart !== undefined && firstLoad) {
@@ -26,90 +27,77 @@ export default function Product(){
             });
         }
     }, [cart, firstLoad, id, quantity]);
-    const product = useSelector(state => state.products.product);
-    if (product === undefined) dispatch(actions.findProduct({id}));
-    const name = product.data.name;
-    const images = product.data.images;
-    const price = Number.parseFloat(product.data.price);
-    const operationalSystem = product.data.os;
-    const storage = product.data.storage.hdd;
-    const memory = product.data.storage.ram;
-    const cpu = product.data.hardware.cpu;
-    const wifi = product.data.connectivity.wifi;
-    const description = product.data.description;
-    const screenResolution = product.data.display.screenResolution;
-    const screenSize = product.data.display.screenSize;
     useMemo(() => {
         setItem(
                 {
                     id: id,
-                    name: name,
-                    images: images,
-                    price: price,
+                    name: product.data.name,
+                    images: product.data.images,
+                    price: Number.parseFloat(product.data.price),
                     totalPrice: totalPrice,
                     quantity: quantity,
                 }
         )
-    }, [id, images, name, price, quantity, totalPrice]);
+    }, [id, product.data.images, product.data.name, product.data.price, quantity, totalPrice]);
     useEffect(() => {
         dispatch(actions.findProduct({id}));
-    }, [dispatch, id, quantity, totalPrice]);
+    }, [dispatch, id]);
     const addProduct = useCallback(() => {
         if (isLoggedIn){
             setFirstLoad(false);
-            dispatch(actions.addProduct({id, name, price, totalPrice, images}));
-            toast.success(`Added ${name} successfully!`);
+            dispatch(actions.addProduct({...item}));
+            toast.success(`Added ${item.name} successfully!`);
             setQuantity(quantity+1);
-            setTotalPrice(Number.parseFloat(Number.parseFloat(totalPrice + price).toFixed(2)));
+            setTotalPrice(Number.parseFloat(Number.parseFloat(totalPrice + item.price).toFixed(2)));
         }
         if (!isLoggedIn) toast.error('You must be logged in!');
-    }, [dispatch, id, images, isLoggedIn, name, price, quantity, totalPrice]);
+    }, [dispatch, isLoggedIn, item, quantity, totalPrice]);
     const removeProduct = useCallback(() => {
         if (isLoggedIn){
             setFirstLoad(false);
             dispatch(actions.removeProduct(id));
-            toast.success(`Removed ${name} successfully!`);
+            toast.success(`Removed ${item.name} successfully!`);
             setQuantity(0);
             setTotalPrice(0);
         }
         if (!isLoggedIn) toast.error('You must be logged in!');
-    }, [dispatch, id, isLoggedIn, name]);
+    }, [dispatch, id, isLoggedIn, item.name]);
     const incrementQuantity = useCallback(() => {
         if (isLoggedIn && quantity > 0){
             setFirstLoad(false);
             item.quantity++;
             setQuantity(item.quantity);
-            item.totalPrice = Number.parseFloat(Number.parseFloat(item.totalPrice + item.price).toFixed(2));
+            item.totalPrice = Number.parseFloat(Number.parseFloat(totalPrice + item.price).toFixed(2));
             setTotalPrice(item.totalPrice);
             dispatch(actions.changeQuantity({...item}));
-            toast.success(`Added ${name} successfully!`);
+            toast.success(`Added ${item.name} successfully!`);
         }
         if (!isLoggedIn || quantity === 0) toast.error('Can not add the item.');
-    }, [dispatch, isLoggedIn, item, name, quantity]);
+    }, [dispatch, isLoggedIn, item, quantity, totalPrice]);
     const decrementQuantity = useCallback(() => {
         if (isLoggedIn && quantity > 1){
             setFirstLoad(false);
             item.quantity--;
             setQuantity(item.quantity);
-            item.totalPrice = Number.parseFloat(Number.parseFloat(item.totalPrice - item.price).toFixed(2));
+            item.totalPrice = Number.parseFloat(Number.parseFloat(totalPrice - item.price).toFixed(2));
             setTotalPrice(item.totalPrice);
             dispatch(actions.changeQuantity({...item}));
-            toast.success(`Removed ${name} successfully!`);
+            toast.success(`Removed ${item.name} successfully!`);
         }
         if (!isLoggedIn || quantity === 0) toast.error('Can not remove the item.');
-    }, [dispatch, isLoggedIn, item, name, quantity]);
+    }, [dispatch, isLoggedIn, item, quantity, totalPrice]);
     return (
         <ProductContainer>
             <ItemContainer>
                 <h1>Info</h1> 
-                <p>Operational System: {operationalSystem}</p>
-                <p>Resolution: {screenResolution}</p>
-                <p>Screen Size: {screenSize}</p>
-                <p>Storage: {storage}</p>
-                <p>Memory: {memory}</p>
-                <p>CPU: {cpu}</p>
-                <p>Wifi: {wifi}</p>
-                <p>Description: {description}</p>
+                <p>Operational System: {product.data.os}</p>
+                <p>Resolution: {product.data.display.screenResolution}</p>
+                <p>Screen Size: {product.data.display.screenSize}</p>
+                <p>Storage: {product.data.storage.hdd}</p>
+                <p>Memory: {product.data.storage.ram}</p>
+                <p>CPU: {product.data.hardware.cpu}</p>
+                <p>Wifi: {product.data.connectivity.wifi}</p>
+                <p>Description: {product.data.description}</p>
                 <ProductContainer>
                     <CartButton onClick={addProduct}>Add to cart</CartButton>
                     <CartButton onClick={incrementQuantity}>+</CartButton>

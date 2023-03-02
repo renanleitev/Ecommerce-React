@@ -52,6 +52,10 @@ export const ShoppingContainer = styled.div`
         margin-top: 50px;
         margin-bottom: 50px;
     }
+    img:hover{
+        transform: scale(1.2);
+        transition: all 300ms;
+    }
 `;
 
 export const CheckoutContainer = styled.button`
@@ -60,7 +64,6 @@ export const CheckoutContainer = styled.button`
     position: fixed;
     align-self: flex-end;
     z-index: 2;
-    margin-top: 40%;
     :hover{
         background-color: ${colors.sucessColor};
     }

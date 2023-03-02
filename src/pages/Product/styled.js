@@ -24,6 +24,7 @@ export const ItemContainer = styled.div`
     }
     img:hover{
         transform: scale(1.2);
+        transition: all 300ms;
     }
     h1{
         margin-bottom: 10px;

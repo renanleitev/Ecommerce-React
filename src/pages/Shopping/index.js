@@ -24,7 +24,7 @@ export default function Shopping(){
         cart.forEach(element => {
             total += element.totalPrice;
         });
-        toast.success(`Thank you! Your total is $${total}`);
+        toast.success(`Thank you! Your total is $${Number.parseFloat(Number.parseFloat(total).toFixed(2))}`);
     }, [cart]);
     const handleIncrement = useCallback((item) => {
         item.quantity++;
