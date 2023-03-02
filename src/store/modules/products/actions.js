@@ -30,15 +30,9 @@ export function addProduct(payload) {
         payload
     };
 }
-export function incrementQuantity(payload) {
+export function changeQuantity(payload) {
     return {
-        type: types.INCREMENT_QUANTITY,
-        payload
-    };
-}
-export function decrementQuantity(payload) {
-    return {
-        type: types.DECREMENT_QUANTITY,
+        type: types.CHANGE_QUANTITY,
         payload
     };
 }

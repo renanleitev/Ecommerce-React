@@ -39,18 +39,11 @@ export default function productsReducer (state = initialState, action) {
             }
             return newState;
         }
-        case types.INCREMENT_QUANTITY: {
+        case types.CHANGE_QUANTITY: {
             const newState = { ...state };
-            const item = newState.cart.find((item) => item.id === action.payload);
-            item.quantity++;
-            item.totalPrice = Number.parseFloat(Number.parseFloat(item.price * item.quantity).toFixed(2));
-            return newState;
-        }
-        case types.DECREMENT_QUANTITY: {
-            const newState = { ...state };
-            const item = newState.cart.find((item) => item.id === action.payload);
-            if (item.quantity > 1) item.quantity--;
-            item.totalPrice = Number.parseFloat(Number.parseFloat(item.price * item.quantity).toFixed(2));
+            const item = newState.cart.find((item) => item.id === action.payload.id);
+            item.quantity = action.payload.quantity;
+            item.totalPrice = action.payload.totalPrice;
             return newState;
         }
         case types.REMOVE_PRODUCT: {

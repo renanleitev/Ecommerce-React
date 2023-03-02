@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import {FaShoppingCart} from 'react-icons/fa';
 import { useSelector, useDispatch } from 'react-redux';
 import * as actions from '../../store/modules/products/actions';
@@ -14,14 +14,10 @@ import { toast } from 'react-toastify';
 export default function Shopping(){
     const cart = useSelector(state => state.products.cart);
     const isLoggedIn = useSelector(state => state.login.isLoggedIn);
-    const [quantity, setQuantity] = useState(0);
     const dispatch = useDispatch();
-    useMemo(() => {
-        let quantity = 0;
-        cart.forEach(element => {
-            quantity += element.quantity;
-        });
-        setQuantity(quantity);
+    const [shoppingCart, setShoppingCart] = useState([...cart]);
+    useEffect(() => {
+        setShoppingCart([...cart]);
     }, [cart]);
     const handleCheckout = useCallback(() => {
         let total = 0;
@@ -30,22 +26,31 @@ export default function Shopping(){
         });
         toast.success(`Thank you! Your total is $${total}`);
     }, [cart]);
-    const handleIncrement = useCallback((id) => {
-        dispatch(actions.incrementQuantity(id));
-        setQuantity(quantity+1);
-    }, [dispatch, quantity]);
-    const handleDecrement = useCallback((id) => {
-        dispatch(actions.decrementQuantity(id));
-        setQuantity(quantity-1);
-    }, [dispatch, quantity]);
-    const handleRemove = useCallback((id) => {
-        dispatch(actions.removeProduct(id));
+    const handleIncrement = useCallback((item) => {
+        const newItem = {...item};
+        newItem.quantity++;
+        newItem.totalPrice = Number.parseFloat(Number.parseFloat(newItem.price * newItem.quantity).toFixed(2));
+        dispatch(actions.changeQuantity({...newItem}));
+        toast.success(`Added ${newItem.name} successfully!`);
+        setShoppingCart([...cart]);
+    }, [cart, dispatch]);
+    const handleDecrement = useCallback((item) => {
+        const newItem = {...item};
+        newItem.quantity--;
+        newItem.totalPrice = Number.parseFloat(Number.parseFloat(newItem.price * newItem.quantity).toFixed(2));
+        dispatch(actions.changeQuantity({...newItem}));
+        toast.success(`Removed ${newItem.name} successfully!`);
+        setShoppingCart([...cart]);
+    }, [cart, dispatch]);
+    const handleRemove = useCallback((item) => {
+        dispatch(actions.removeProduct(item.id));
+        toast.success(`Product ${item.name} removed successfully!`);
     }, [dispatch]);
     return (
         <CartContainer>
-            <CheckoutContainer onClick={handleCheckout}><FaShoppingCart size={20}/> {quantity}</CheckoutContainer>
+            <CheckoutContainer onClick={handleCheckout}><FaShoppingCart size={30}/></CheckoutContainer>
             {isLoggedIn ? (
-                cart.map(item => (
+                shoppingCart.map(item => (
                     <ItemContainer key={item.id}>
                         <ShoppingContainer key={item.id+1}>
                             <Link to={`product/${item.id}`} key={item.id+2}>{item.name}</Link>
@@ -55,9 +60,9 @@ export default function Shopping(){
                             <p key={item.id+6}>Total: ${item.totalPrice}</p>
                         </ShoppingContainer>
                         <ButtonContainer key={item.id+7}>
-                                <button onClick={() => handleIncrement(item.id)}>+</button>
-                                <button onClick={() => handleDecrement(item.id)}>-</button>
-                                <button onClick={() => handleRemove(item.id)}>Remove item</button>
+                                <button onClick={() => handleIncrement(item)}>+</button>
+                                <button onClick={() => handleDecrement(item)}>-</button>
+                                <button onClick={() => handleRemove(item)}>Remove item</button>
                         </ButtonContainer>
                     </ItemContainer>
                 ))

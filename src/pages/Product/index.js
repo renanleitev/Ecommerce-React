@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useState } from 'react';
+import React, { useEffect, useCallback, useState, useMemo } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import * as actions from '../../store/modules/products/actions';
@@ -14,8 +14,9 @@ export default function Product(){
     const isLoggedIn = useSelector(state => state.login.isLoggedIn);
     const [quantity, setQuantity] = useState(0);
     const [totalPrice, setTotalPrice] = useState(0);
-    useEffect(() => {
-        if (cart !== undefined) {
+    const [firstLoad, setFirstLoad] = useState(true);
+    useMemo(() => {
+        if (cart !== undefined && firstLoad) {
             cart.forEach(element => {
                 if (element.id === id) {
                     setQuantity(element.quantity);
@@ -23,7 +24,7 @@ export default function Product(){
                 }
             });
         }
-    }, [cart, id, quantity]);
+    }, [cart, firstLoad, id, quantity]);
     const product = useSelector(state => state.products.product);
     if (product === undefined) dispatch(actions.findProduct({id}));
     const name = product.data.name;
@@ -39,9 +40,11 @@ export default function Product(){
     const screenSize = product.data.display.screenSize;
     useEffect(() => {
         dispatch(actions.findProduct({id}));
-    }, [dispatch, id, price, quantity]);
+        dispatch(actions.changeQuantity({id, totalPrice, quantity}));
+    }, [dispatch, id, quantity, totalPrice]);
     const addProduct = useCallback(() => {
         if (isLoggedIn){
+            setFirstLoad(false);
             dispatch(actions.addProduct({id, name, price, totalPrice, images}));
             toast.success(`Added ${name} successfully!`);
             setQuantity(quantity+1);
@@ -51,6 +54,7 @@ export default function Product(){
     }, [dispatch, id, images, isLoggedIn, name, price, quantity, totalPrice]);
     const removeProduct = useCallback(() => {
         if (isLoggedIn){
+            setFirstLoad(false);
             dispatch(actions.removeProduct(id));
             toast.success(`Removed ${name} successfully!`);
             setQuantity(0);
@@ -60,7 +64,8 @@ export default function Product(){
     }, [dispatch, id, isLoggedIn, name]);
     const incrementQuantity = useCallback(() => {
         if (isLoggedIn && quantity > 0){
-            dispatch(actions.incrementQuantity(id));
+            setFirstLoad(false);
+            dispatch(actions.changeQuantity({id, totalPrice, quantity}));
             toast.success(`Added ${name} successfully!`);
             setQuantity(quantity+1);
             setTotalPrice(Number.parseFloat(Number.parseFloat(totalPrice + price).toFixed(2)));
@@ -69,7 +74,8 @@ export default function Product(){
     }, [dispatch, id, isLoggedIn, name, price, quantity, totalPrice]);
     const decrementQuantity = useCallback(() => {
         if (isLoggedIn && quantity > 1){
-            dispatch(actions.decrementQuantity(id));
+            setFirstLoad(false);
+            dispatch(actions.changeQuantity({id, quantity, totalPrice}));
             toast.success(`Removed ${name} successfully!`);
             setQuantity(quantity-1);
             setTotalPrice(Number.parseFloat(Number.parseFloat(totalPrice - price).toFixed(2)));
