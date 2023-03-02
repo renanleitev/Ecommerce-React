@@ -15,6 +15,7 @@ export default function Product(){
     const [quantity, setQuantity] = useState(0);
     const [totalPrice, setTotalPrice] = useState(0);
     const [firstLoad, setFirstLoad] = useState(true);
+    const [item, setItem] = useState({});
     useMemo(() => {
         if (cart !== undefined && firstLoad) {
             cart.forEach(element => {
@@ -38,9 +39,20 @@ export default function Product(){
     const description = product.data.description;
     const screenResolution = product.data.display.screenResolution;
     const screenSize = product.data.display.screenSize;
+    useMemo(() => {
+        setItem(
+                {
+                    id: id,
+                    name: name,
+                    images: images,
+                    price: price,
+                    totalPrice: totalPrice,
+                    quantity: quantity,
+                }
+        )
+    }, [id, images, name, price, quantity, totalPrice]);
     useEffect(() => {
         dispatch(actions.findProduct({id}));
-        dispatch(actions.changeQuantity({id, totalPrice, quantity}));
     }, [dispatch, id, quantity, totalPrice]);
     const addProduct = useCallback(() => {
         if (isLoggedIn){
@@ -65,23 +77,27 @@ export default function Product(){
     const incrementQuantity = useCallback(() => {
         if (isLoggedIn && quantity > 0){
             setFirstLoad(false);
-            dispatch(actions.changeQuantity({id, totalPrice, quantity}));
+            item.quantity++;
+            setQuantity(item.quantity);
+            item.totalPrice = Number.parseFloat(Number.parseFloat(item.totalPrice + item.price).toFixed(2));
+            setTotalPrice(item.totalPrice);
+            dispatch(actions.changeQuantity({...item}));
             toast.success(`Added ${name} successfully!`);
-            setQuantity(quantity+1);
-            setTotalPrice(Number.parseFloat(Number.parseFloat(totalPrice + price).toFixed(2)));
         }
         if (!isLoggedIn || quantity === 0) toast.error('Can not add the item.');
-    }, [dispatch, id, isLoggedIn, name, price, quantity, totalPrice]);
+    }, [dispatch, isLoggedIn, item, name, quantity]);
     const decrementQuantity = useCallback(() => {
         if (isLoggedIn && quantity > 1){
             setFirstLoad(false);
-            dispatch(actions.changeQuantity({id, quantity, totalPrice}));
+            item.quantity--;
+            setQuantity(item.quantity);
+            item.totalPrice = Number.parseFloat(Number.parseFloat(item.totalPrice - item.price).toFixed(2));
+            setTotalPrice(item.totalPrice);
+            dispatch(actions.changeQuantity({...item}));
             toast.success(`Removed ${name} successfully!`);
-            setQuantity(quantity-1);
-            setTotalPrice(Number.parseFloat(Number.parseFloat(totalPrice - price).toFixed(2)));
         }
         if (!isLoggedIn || quantity === 0) toast.error('Can not remove the item.');
-    }, [dispatch, id, isLoggedIn, name, price, quantity, totalPrice]);
+    }, [dispatch, isLoggedIn, item, name, quantity]);
     return (
         <ProductContainer>
             <ItemContainer>
@@ -102,11 +118,11 @@ export default function Product(){
                 </ProductContainer>
             </ItemContainer> 
             <ItemContainer> 
-                <p>{name}</p>
-                <img src={images} alt=''/>
-                <p>Price: ${price}</p>
-                <p>Quantity: {quantity}</p>
-                <p>Total: ${Number.parseFloat(Number.parseFloat(totalPrice).toFixed(2))}</p>
+                <p>{item.name}</p>
+                <img src={item.images} alt=''/>
+                <p>Price: ${item.price}</p>
+                <p>Quantity: {item.quantity}</p>
+                <p>Total: ${Number.parseFloat(item.totalPrice).toFixed(2)}</p>
             </ItemContainer> 
         </ProductContainer>       
     )

@@ -27,19 +27,17 @@ export default function Shopping(){
         toast.success(`Thank you! Your total is $${total}`);
     }, [cart]);
     const handleIncrement = useCallback((item) => {
-        const newItem = {...item};
-        newItem.quantity++;
-        newItem.totalPrice = Number.parseFloat(Number.parseFloat(newItem.price * newItem.quantity).toFixed(2));
-        dispatch(actions.changeQuantity({...newItem}));
-        toast.success(`Added ${newItem.name} successfully!`);
+        item.quantity++;
+        item.totalPrice = Number.parseFloat(Number.parseFloat(item.price * item.quantity).toFixed(2));
+        dispatch(actions.changeQuantity({...item}));
+        toast.success(`Added ${item.name} successfully!`);
         setShoppingCart([...cart]);
     }, [cart, dispatch]);
     const handleDecrement = useCallback((item) => {
-        const newItem = {...item};
-        newItem.quantity--;
-        newItem.totalPrice = Number.parseFloat(Number.parseFloat(newItem.price * newItem.quantity).toFixed(2));
-        dispatch(actions.changeQuantity({...newItem}));
-        toast.success(`Removed ${newItem.name} successfully!`);
+        item.quantity--;
+        item.totalPrice = Number.parseFloat(Number.parseFloat(item.price * item.quantity).toFixed(2));
+        dispatch(actions.changeQuantity({...item}));
+        toast.success(`Removed ${item.name} successfully!`);
         setShoppingCart([...cart]);
     }, [cart, dispatch]);
     const handleRemove = useCallback((item) => {
