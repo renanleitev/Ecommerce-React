@@ -45,13 +45,25 @@ export default function Product(){
     const addProduct = useCallback(() => {
         if (isLoggedIn){
             setFirstLoad(false);
-            dispatch(actions.addProduct({...item}));
+            const findItem = cart.find((product) => product.id === item.id);
+            if (findItem) {
+                findItem.quantity++;
+                setQuantity(findItem.quantity);
+                findItem.totalPrice = Number.parseFloat(Number.parseFloat(totalPrice + item.price).toFixed(2));
+                setTotalPrice(findItem.totalPrice);
+            } else {
+                item.quantity++;
+                setQuantity(item.quantity);
+                item.totalPrice = Number.parseFloat(Number.parseFloat(totalPrice + item.price).toFixed(2));
+                setTotalPrice(item.totalPrice);
+                dispatch(actions.addProduct({...item}));
+            } 
             toast.success(`Added ${item.name} successfully!`);
             setQuantity(quantity+1);
             setTotalPrice(Number.parseFloat(Number.parseFloat(totalPrice + item.price).toFixed(2)));
         }
         if (!isLoggedIn) toast.error('You must be logged in!');
-    }, [dispatch, isLoggedIn, item, quantity, totalPrice]);
+    }, [cart, dispatch, isLoggedIn, item, quantity, totalPrice]);
     const removeProduct = useCallback(() => {
         if (isLoggedIn){
             setFirstLoad(false);

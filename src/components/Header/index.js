@@ -36,10 +36,10 @@ export default function Header(){
                 <FaHome size={24}/>
             </Link>
             <Link to="/login">
-                {(isLoggedIn && (<FaUserEdit size={24}/>)) || (<FaUserAlt size={24}/>)}
+                {(isLoggedIn && (<FaUserEdit size={30}/>)) || (<FaUserAlt size={24}/>)}
             </Link>
             <Link to="/register">
-                {(isLoggedIn && (<FaUserMinus size={24}/>)) || (<FaUserPlus size={24}/>)}
+                {(isLoggedIn && (<FaUserMinus size={30}/>)) || (<FaUserPlus size={30}/>)}
             </Link>
             <Link to="/shopping">
                 <FaShoppingCart size={24}/>

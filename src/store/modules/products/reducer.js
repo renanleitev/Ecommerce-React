@@ -24,19 +24,7 @@ export default function productsReducer (state = initialState, action) {
         }
         case types.ADD_PRODUCT: {
             const newState = { ...state };
-            if (newState.cart === undefined) {
-                newState.cart = [{ ...action.payload, quantity: 1 }];
-            }
-            const item = newState.cart.find((item) => item.id === action.payload.id);
-            if (item) {
-              item.quantity++;
-              item.totalPrice = Number.parseFloat(Number.parseFloat(item.price * item.quantity).toFixed(2));
-            } else {
-                newState.cart.push({ 
-                    ...action.payload, 
-                    quantity: 1, 
-                    totalPrice: Number.parseFloat(Number.parseFloat(action.payload.price).toFixed(2))});
-            }
+            newState.cart.push({ ...action.payload });
             return newState;
         }
         case types.CHANGE_QUANTITY: {

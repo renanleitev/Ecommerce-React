@@ -46,7 +46,7 @@ export default function Shopping(){
     }, [dispatch]);
     return (
         <CartContainer>
-            <CheckoutContainer onClick={handleCheckout}><FaShoppingCart size={30}/></CheckoutContainer>
+            {isLoggedIn ? (<CheckoutContainer onClick={handleCheckout}><FaShoppingCart size={30}/></CheckoutContainer>) : (<></>)}
             {isLoggedIn ? (
                 shoppingCart.map(item => (
                     <ItemContainer key={item.id}>

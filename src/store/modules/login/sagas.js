@@ -45,16 +45,8 @@ function* loginFailure({payload}) {
     }
 }
 function* editRequest({payload}){
-    const { id, name, surname, address, email, password } = payload;
     try {
-        yield call(axios.put, `/users/${id}`, {
-            id,
-            name,
-            surname,
-            address,
-            email,
-            password
-        });
+        yield call(axios.put, `/users/${payload.id}`, {payload});
         toast.success('Update successful!');
         yield put(actions.editSuccess(payload));
         history.push('/');
@@ -65,15 +57,7 @@ function* editRequest({payload}){
     }
 }
 function* registerRequest({payload}){
-    const { id, name, surname, address, email, password } = payload;
-    yield call(axios.post, '/users', {
-        id,
-        name,
-        surname,
-        address,
-        email,
-        password
-    });
+    yield call(axios.post, '/users', {payload});
     toast.success('Register successful!');
     yield put(actions.editSuccess(payload));
     history.push('/');
@@ -83,7 +67,6 @@ function* deleteRequest({payload}){
     toast.success('Delete successful!');
     history.push('/');
 }
-
 // takeLatest = Obtém apenas o último clique do botão
 export default all([
     takeLatest(types.LOGIN_REQUEST, loginRequest),
